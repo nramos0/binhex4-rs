@@ -1,0 +1,6 @@
+.vscode/
+test/raw/
+target/
+
+.DS_Store
+Cargo.lock

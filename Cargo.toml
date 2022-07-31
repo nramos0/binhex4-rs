@@ -1,0 +1,14 @@
+[package]
+name = "binhex4"
+version = "0.1.0"
+edition = "2021"
+authors = ["Nicholas Ramos <nramos14736251@gmail.com>"]
+description = "A BinHex 4.0 encoder and decoder implementation for Rust"
+homepage = "https://github.com/nramos0/binhex4-rs/"
+repository = "https://github.com/nramos0/binhex4-rs/"
+license = "MIT"
+readme = "README.md"
+
+[dependencies]
+nom = "7"
+lazy_static = "1.4"
