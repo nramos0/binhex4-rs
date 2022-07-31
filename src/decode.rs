@@ -148,3 +148,96 @@ fn decode(encoded_bin_with_newlines: &[u8]) -> HQX {
 
     HQX::new(out)
 }
+
+#[cfg(test)]
+mod test {
+    use std::{fs::File, io::Write, path::PathBuf, str::FromStr};
+
+    use nom::HexDisplay;
+
+    use super::hexbin;
+
+    macro_rules! generate_test_for_file {
+        ($name:expr) => {{
+            let file_data = include_bytes!(concat!("../test/hex/", $name, ".hqx"));
+            let result = hexbin(file_data, true);
+            assert!(result.is_ok());
+
+            let result = result.unwrap();
+            let hex_str = result.vec.to_hex(16);
+
+            let mut file = File::create(concat!("./test/raw/", $name, ".out"))?;
+            file.write_all(hex_str.as_bytes())?;
+
+            let hqx_ref = result.borrow();
+            hqx_ref.encode_to_file(PathBuf::from_str("./test/hex/").unwrap())?;
+
+            return Ok(());
+        }};
+    }
+
+    #[test]
+    fn test_cybergif() -> std::io::Result<()> {
+        generate_test_for_file!("cybergif");
+    }
+
+    #[test]
+    fn test_earth() -> std::io::Result<()> {
+        generate_test_for_file!("earth");
+    }
+
+    #[test]
+    fn test_a() -> std::io::Result<()> {
+        generate_test_for_file!("a");
+    }
+
+    #[test]
+    fn test_b() -> std::io::Result<()> {
+        generate_test_for_file!("b");
+    }
+
+    #[test]
+    fn test_example() -> std::io::Result<()> {
+        generate_test_for_file!("example");
+    }
+
+    #[test]
+    fn test_gc229_10() -> std::io::Result<()> {
+        generate_test_for_file!("gc229_10");
+    }
+
+    #[test]
+    fn test_gifmovie() -> std::io::Result<()> {
+        generate_test_for_file!("gifmovie");
+    }
+
+    #[test]
+    fn test_inside_s() -> std::io::Result<()> {
+        generate_test_for_file!("INSIDE_S");
+    }
+
+    #[test]
+    fn test_konica_pc_pictureshow_sit() -> std::io::Result<()> {
+        generate_test_for_file!("Konica_PC_PictureShow.sit");
+    }
+
+    #[test]
+    fn test_mod12() -> std::io::Result<()> {
+        generate_test_for_file!("MOD12");
+    }
+
+    #[test]
+    fn test_netm2340() -> std::io::Result<()> {
+        generate_test_for_file!("NETM2340");
+    }
+
+    #[test]
+    fn test_newton() -> std::io::Result<()> {
+        generate_test_for_file!("newton");
+    }
+
+    #[test]
+    fn test_timetrav() -> std::io::Result<()> {
+        generate_test_for_file!("timetrav");
+    }
+}
