@@ -8,6 +8,9 @@ homepage = "https://github.com/nramos0/binhex4-rs/"
 repository = "https://github.com/nramos0/binhex4-rs/"
 license = "MIT"
 readme = "README.md"
+exclude = [
+    "test/*",
+]
 
 [dependencies]
 nom = "7"
