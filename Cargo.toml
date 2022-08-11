@@ -1,6 +1,6 @@
 [package]
 name = "binhex4"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Nicholas Ramos <nramos14736251@gmail.com>"]
 description = "A BinHex 4.0 encoder and decoder implementation for Rust"
